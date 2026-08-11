@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Litverse</title>
+    <!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+    <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/css/account.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/index">
+                <img 
+                src="static/assets/images/2.jpg" 
+                alt="Litverse" 
+                style="
+                    height: 60px;
+                    width: 60px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                    border: 2px solid white;
+                    transition: all 0.3s ease;
+                "
+                onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 10px rgba(255, 255, 255, 0.5)'"
+                onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'"
+            >
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/library">Library</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/subscription">Subscription</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/account">
+                            <i class="fas fa-user-circle"></i> My Account
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light ml-lg-2" href="/login" id="logoutBtn">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Account Header -->
+    <header class="account-header py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-2">
+                    <div class="profile-picture">
+                        <img src="static/assets/images/3.jpg" alt="Profile" class="img-fluid rounded-circle">
+                        <button class="btn btn-sm btn-primary change-photo-btn">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h1 class="mb-1">John Doe</h1>
+                    <p class="text-muted mb-2">Member since June 2023</p>
+                    <div class="d-flex align-items-center">
+                        <div class="mr-3">
+                            <span class="h5 mb-0">4.8</span>
+                            <div class="stars">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star-half-alt text-warning"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="badge badge-primary">Premium Member</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-md-right mt-3 mt-md-0">
+                    <button type="button" onclick="window.location.href='/s'" class="btn btn-primary">
+    <i class="fas fa-star mr-1"></i> Setting
+</button>
+                   <button type="button" onclick="window.location.href='/subscription'" class="btn btn-primary">
+    <i class="fas fa-star mr-1"></i> Upgrade
+</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Account Content -->
+    <section class="account-content py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <!-- Sidebar Navigation -->
+                    <div class="card mb-4">
+                        <div class="card-body p-0">
+                            <ul class="nav flex-column account-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#profile" data-toggle="tab">
+                                        <i class="fas fa-user mr-2"></i> Profile
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/library" data-toggle="tab">
+                                        <i class="fas fa-book-open mr-2"></i> Reading Activity
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/subscription" data-toggle="tab">
+                                        <i class="fas fa-star mr-2"></i> Subscription
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/s" data-toggle="tab">
+                                        <i class="fas fa-cog mr-2"></i> Settings
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/ss" data-toggle="tab">
+                                        <i class="fas fa-shield-alt mr-2"></i> Security
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Reading Stats -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Reading Stats</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <h6>Books Read</h6>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">12/20</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <h6>Reading Streak</h6>
+                                <div class="d-flex align-items-center">
+                                    <span class="h4 mb-0 mr-2">7</span>
+                                    <span>days in a row</span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <h6>Minutes Read</h6>
+                                <div class="d-flex align-items-center">
+                                    <span class="h4 mb-0 mr-2">1,245</span>
+                                    <span>this month</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-8">
+                    <div class="tab-content" id="accountTabsContent">
+                        <!-- Profile Tab -->
+                        <div class="tab-pane fade show active" id="profile" role="tabpanel">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Personal Information</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form id="profileForm">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="firstName">First Name</label>
+                                                <input type="text" class="form-control" id="firstName" value="John">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="lastName">Last Name</label>
+                                                <input type="text" class="form-control" id="lastName" value="Doe">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email Address</label>
+                                            <input type="email" class="form-control" id="email" value="john.doe@example.com">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="bio">Bio</label>
+                                            <textarea class="form-control" id="bio" rows="3">Avid reader who enjoys science fiction and fantasy novels.</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Favorite Genres</label>
+                                            <div class="d-flex flex-wrap">
+                                                <div class="custom-control custom-checkbox mr-3 mb-2">
+                                                    <input type="checkbox" class="custom-control-input" id="genreFiction" checked>
+                                                    <label class="custom-control-label" for="genreFiction">Fiction</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox mr-3 mb-2">
+                                                    <input type="checkbox" class="custom-control-input" id="genreSciFi" checked>
+                                                    <label class="custom-control-label" for="genreSciFi">Science Fiction</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox mr-3 mb-2">
+                                                    <input type="checkbox" class="custom-control-input" id="genreFantasy" checked>
+                                                    <label class="custom-control-label" for="genreFantasy">Fantasy</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox mr-3 mb-2">
+                                                    <input type="checkbox" class="custom-control-input" id="genreMystery">
+                                                    <label class="custom-control-label" for="genreMystery">Mystery</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox mr-3 mb-2">
+                                                    <input type="checkbox" class="custom-control-input" id="genreBiography">
+                                                    <label class="custom-control-label" for="genreBiography">Biography</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Reading Preferences</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form id="preferencesForm">
+                                        <div class="form-group">
+                                            <label for="themePref">Theme Preference</label>
+                                            <select class="form-control" id="themePref">
+                                                <option value="light">Light</option>
+                                                <option value="dark">Dark</option>
+                                                <option value="sepia" selected>Sepia</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="fontPref">Font Preference</label>
+                                            <select class="form-control" id="fontPref">
+                                                <option value="arial">Arial</option>
+                                                <option value="georgia" selected>Georgia</option>
+                                                <option value="times">Times New Roman</option>
+                                                <option value="verdana">Verdana</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="fontSizePref">Font Size</label>
+                                            <select class="form-control" id="fontSizePref">
+                                                <option value="small">Small</option>
+                                                <option value="medium" selected>Medium</option>
+                                                <option value="large">Large</option>
+                                                <option value="xlarge">Extra Large</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input" id="syncPref" checked>
+                                                <label class="custom-control-label" for="syncPref">Sync reading progress across devices</label>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Save Preferences</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- My Library Tab -->
+                        <div class="tab-pane fade" id="library" role="tabpanel">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">My Library</h5>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-secondary active">All</button>
+                                        <button class="btn btn-sm btn-outline-secondary">Reading</button>
+                                        <button class="btn btn-sm btn-outline-secondary">Finished</button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Book</th>
+                                                    <th>Progress</th>
+                                                    <th>Last Read</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <img src="static/assets/images/book-covers/book1.jpg" alt="Book Cover" width="40" class="mr-3">
+                                                            <div>
+                                                                <h6 class="mb-0">The Great Novel</h6>
+                                                                <small class="text-muted">John Author</small>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="progress" style="height: 5px;">
+                                                            <div class="progress-bar" role="progressbar" style="width: 45%"></div>
+                                                        </div>
+                                                        <small>45% complete</small>
+                                                    </td>
+                                                    <td>2 hours ago</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-primary">Continue</button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <img src="static/assets/images/book-covers/book2.jpg" alt="Book Cover" width="40" class="mr-3">
+                                                            <div>
+                                                                <h6 class="mb-0">Science Today</h6>
+                                                                <small class="text-muted">Jane Scientist</small>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="progress" style="height: 5px;">
+                                                            <div class="progress-bar" role="progressbar" style="width: 100%"></div>
+                                                        </div>
+                                                        <small>Completed</small>
+                                                    </td>
+                                                    <td>3 days ago</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary">Review</button>
+                                                    </td>
+                                                </tr>
+                                                <!-- More books will be populated by JavaScript -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Reading Activity Tab -->
+                        <div class="tab-pane fade" id="reading" role="tabpanel">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Reading Activity</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-4">
+                                        <h6>Reading History</h6>
+                                        <div class="timeline">
+                                            <div class="timeline-item">
+                                                <div class="timeline-badge"></div>
+                                                <div class="timeline-content">
+                                                    <h6>Finished reading "Science Today"</h6>
+                                                    <p class="text-muted mb-0">3 days ago</p>
+                                                </div>
+                                            </div>
+                                            <div class="timeline-item">
+                                                <div class="timeline-badge"></div>
+                                                <div class="timeline-content">
+                                                    <h6>Started reading "The Great Novel"</h6>
+                                                    <p class="text-muted mb-0">1 week ago</p>
+                                                </div>
+                                            </div>
+                                            <div class="timeline-item">
+                                                <div class="timeline-badge"></div>
+                                                <div class="timeline-content">
+                                                    <h6>Added "Mystery Tales" to library</h6>
+                                                    <p class="text-muted mb-0">2 weeks ago</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h6>Reading Statistics</h6>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <div class="card h-100">
+                                                    <div class="card-body">
+                                                        <h6 class="text-muted">Books Read</h6>
+                                                        <h3 class="mb-0">12</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <div class="card h-100">
+                                                    <div class="card-body">
+                                                        <h6 class="text-muted">Pages Read</h6>
+                                                        <h3 class="mb-0">3,245</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <div class="card h-100">
+                                                    <div class="card-body">
+                                                        <h6 class="text-muted">Reading Streak</h6>
+                                                        <h3 class="mb-0">7 days</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <div class="card h-100">
+                                                    <div class="card-body">
+                                                        <h6 class="text-muted">Favorite Genre</h6>
+                                                        <h3 class="mb-0">Sci-Fi</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Subscription Tab -->
+                        <div class="tab-pane fade" id="subscription" role="tabpanel">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Subscription Details</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mb-4">
+                                        <div class="col-md-6">
+                                            <div class="card bg-light">
+                                                <div class="card-body">
+                                                    <h6 class="text-muted">Current Plan</h6>
+                                                    <h3 class="mb-1">Premium</h3>
+                                                    <p class="mb-2">$9.99/month</p>
+                                                    <span class="badge badge-success">Active</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card bg-light">
+                                                <div class="card-body">
+                                                    <h6 class="text-muted">Next Billing Date</h6>
+                                                    <h3 class="mb-1">July 15, 2023</h3>
+                                                    <p class="mb-2">Auto-renewal enabled</p>
+                                                    <a href="#" class="text-primary">Manage subscription</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h6 class="mb-3">Subscription History</h6>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Plan</th>
+                                                    <th>Amount</th>
+                                                    <th>Status</th>
+                                                    <th>Receipt</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>June 15, 2023</td>
+                                                    <td>Premium</td>
+                                                    <td>Rs.2500</td>
+                                                    <td><span class="badge badge-success">Paid</span></td>
+                                                    <td><a href="#">View</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>May 15, 2023</td>
+                                                    <td>Basic</td>
+                                                    <td>Rs.1500</td>
+                                                    <td><span class="badge badge-success">Paid</span></td>
+                                                    <td><a href="#">View</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>April 15, 2023</td>
+                                                    <td>Basic</td>
+                                                    <td>Rs.1500</td>
+                                                    <td><span class="badge badge-success">Paid</span></td>
+                                                    <td><a href="#">View</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Settings Tab -->
+                        <div class="tab-pane fade" id="settings" role="tabpanel">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Account Settings</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form id="settingsForm">
+                                        <div class="form-group">
+                                            <label for="languagePref">Language Preference</label>
+                                            <select class="form-control" id="languagePref">
+                                                <option value="en" selected>English</option>
+                                                <option value="es">Spanish</option>
+                                                <option value="fr">French</option>
+                                                <option value="de">German</option>
+                                                <option value="it">Italian</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="timezonePref">Timezone</label>
+                                            <select class="form-control" id="timezonePref">
+                                                <option value="-12">(GMT-12:00) International Date Line West</option>
+                                                <option value="-11">(GMT-11:00) Midway Island, Samoa</option>
+                                                <option value="-10">(GMT-10:00) Hawaii</option>
+                                                <option value="-9">(GMT-09:00) Alaska</option>
+                                                <option value="-8" selected>(GMT-08:00) Pacific Time (US & Canada)</option>
+                                                <option value="-7">(GMT-07:00) Mountain Time (US & Canada)</option>
+                                                <option value="-6">(GMT-06:00) Central Time (US & Canada)</option>
+                                                <option value="-5">(GMT-05:00) Eastern Time (US & Canada)</option>
+                                                <!-- More timezones would be added -->
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input" id="notificationsPref" checked>
+                                                <label class="custom-control-label" for="notificationsPref">Email Notifications</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input" id="newsletterPref" checked>
+                                                <label class="custom-control-label" for="newsletterPref">Subscribe to Newsletter</label>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Save Settings</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Security Tab -->
+                        <div class="tab-pane fade" id="security" role="tabpanel">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Security Settings</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form id="securityForm">
+                                        <div class="form-group">
+                                            <label for="currentPassword">Current Password</label>
+                                            <input type="password" class="form-control" id="currentPassword">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="newPassword">New Password</label>
+                                            <input type="password" class="form-control" id="newPassword">
+                                            <small class="form-text text-muted">Minimum 8 characters with at least one number and one special character</small>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="confirmNewPassword">Confirm New Password</label>
+                                            <input type="password" class="form-control" id="confirmNewPassword">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Change Password</button>
+                                    </form>
+                                    <hr class="my-4">
+                                    <h6 class="mb-3">Security Activity</h6>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Activity</th>
+                                                    <th>Device</th>
+                                                    <th>Location</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Today, 10:30 AM</td>
+                                                    <td>Login</td>
+                                                    <td>Chrome on Windows</td>
+                                                    <td>San Francisco, CA</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Yesterday, 8:45 PM</td>
+                                                    <td>Password changed</td>
+                                                    <td>Safari on iPhone</td>
+                                                    <td>San Francisco, CA</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>June 20, 2023, 3:15 PM</td>
+                                                    <td>Login</td>
+                                                    <td>Firefox on Mac</td>
+                                                    <td>New York, NY</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-left">
+                    <p class="mb-0">&copy; 2025 Litverse. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-right">
+                    <a href="#" class="text-white mr-3">Privacy Policy</a>
+                    <a href="#" class="text-white mr-3">Terms of Service</a>
+                    <a href="#" class="text-white">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+<!-- jQuery (Bootstrap Dependency) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<!-- Popper.js (Bootstrap Dependency) -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/auth.js"></script>
+    <script src="js/account.js"></script>
+</body>
+</html>

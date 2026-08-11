@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Payment</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .payment-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            padding: 30px;
+        }
+        
+        .payment-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .payment-header h2 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .payment-header p {
+            color: #666;
+            margin: 0;
+        }
+        
+        .payment-amount {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .payment-amount .amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .payment-methods {
+            margin-bottom: 25px;
+        }
+        
+        .method-tabs {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+        
+        .method-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .method-tab.active {
+            border-bottom: 2px solid #3498db;
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .method-content {
+            display: none;
+        }
+        
+        .method-content.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        .upi-apps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        .upi-app {
+            width: 60px;
+            height: 60px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .upi-app:hover {
+            border-color: #3498db;
+        }
+        
+        .upi-app img {
+            max-width: 80%;
+            max-height: 80%;
+        }
+        
+        .pay-button {
+            width: 100%;
+            padding: 14px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .pay-button:hover {
+            background-color: #2980b9;
+        }
+        
+        .secure-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 13px;
+        }
+        
+        .secure-info img {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <div class="payment-header">
+            <h2>Secure Payment</h2>
+            <p>Complete your purchase with a secure payment</p>
+        </div>
+        
+        <div class="payment-amount">
+            <div>Amount to pay</div>
+            <div class="amount">₹2,500.00</div>
+        </div>
+        
+        <div class="payment-methods">
+            <div class="method-tabs">
+                <div class="method-tab active" onclick="switchMethod('upi')">UPI</div>
+                <div class="method-tab" onclick="switchMethod('card')">Debit/Credit Card</div>
+            </div>
+            
+            <div id="upi-method" class="method-content active">
+                <div class="form-group">
+                    <label for="upi-id">UPI ID</label>
+                    <input type="text" id="upi-id" placeholder="yourname@upi">
+                </div>
+                
+                <div class="upi-apps">
+                    <div class="upi-app" onclick="selectUpiApp('gpay')">
+                        <img src="static/assets/images/p.jpeg" alt="Google Pay">
+                    </div>
+                    <div class="upi-app" onclick="selectUpiApp('phonepe')">
+                        <img src="static/assets/images/g.jpeg" alt="PhonePe">
+                    </div>
+                    <div class="upi-app" onclick="selectUpiApp('paytm')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Paytm_logo.png" alt="Paytm">
+                    </div>
+                    <div class="upi-app" onclick="selectUpiApp('amazonpay')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Pay">
+                    </div>
+                </div>
+            </div>
+            
+            <div id="card-method" class="method-content">
+                <div class="form-group">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+                </div>
+                
+                <div class="form-group">
+                    <label for="card-name">Name on Card</label>
+                    <input type="text" id="card-name" placeholder="John Doe">
+                </div>
+                
+                <div style="display: flex; gap: 15px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label for="card-expiry">Expiry Date</label>
+                        <input type="text" id="card-expiry" placeholder="MM/YY">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label for="card-cvv">CVV</label>
+                        <input type="text" id="card-cvv" placeholder="123">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="pay-button" onclick="processPayment()">Pay ₹2,500.00</button>
+        
+        <div class="secure-info">
+            <img src="https://cdn-icons-png.flaticon.com/512/2889/2889676.png" width="20" height="20" alt="Secure">
+            <span>Your payment is secure and encrypted</span>
+        </div>
+    </div>
+
+    <script>
+        function switchMethod(method) {
+            // Update tabs
+            document.querySelectorAll('.method-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            if (method === 'upi') {
+                document.querySelector('.method-tab:nth-child(1)').classList.add('active');
+            } else {
+                document.querySelector('.method-tab:nth-child(2)').classList.add('active');
+            }
+            
+            // Update content
+            document.querySelectorAll('.method-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            document.getElementById(method + '-method').classList.add('active');
+        }
+        
+        function selectUpiApp(app) {
+            // In a real app, this would open the selected UPI app
+            console.log('Selected UPI app:', app);
+        }
+        
+        function processPayment() {
+            // Validate inputs
+            const upiMethod = document.getElementById('upi-method').classList.contains('active');
+            
+            if (upiMethod) {
+                const upiId = document.getElementById('upi-id').value;
+                if (!upiId || !upiId.includes('@')) {
+                    alert('Please enter a valid UPI ID');
+                    return;
+                }
+            } else {
+                const cardNumber = document.getElementById('card-number').value;
+                const cardName = document.getElementById('card-name').value;
+                const cardExpiry = document.getElementById('card-expiry').value;
+                const cardCvv = document.getElementById('card-cvv').value;
+                
+                if (!cardNumber || cardNumber.replace(/\s/g, '').length !== 16) {
+                    alert('Please enter a valid 16-digit card number');
+                    return;
+                }
+                
+                if (!cardName) {
+                    alert('Please enter the name on card');
+                    return;
+                }
+                
+                if (!cardExpiry || !cardExpiry.includes('/')) {
+                    alert('Please enter a valid expiry date (MM/YY)');
+                    return;
+                }
+                
+                if (!cardCvv || cardCvv.length !== 3) {
+                    alert('Please enter a valid 3-digit CVV');
+                    return;
+                }
+            }
+            
+            // Simulate payment processing
+            document.querySelector('.pay-button').textContent = 'Processing...';
+            document.querySelector('.pay-button').disabled = true;
+            
+            // In a real app, you would send the payment details to your server here
+            setTimeout(() => {
+                // Redirect to thank you page after 2 seconds
+                window.location.href = '/u1';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

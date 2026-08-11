@@ -1,0 +1,240 @@
+/* Subscription Header */
+.subscription-header {
+     background: linear-gradient(135deg, #6d8eff 0%, #4a6bff 100%); /* Very light blue gradient */
+    color: #333; /* Changed text color for better contrast */
+    text-align: center;
+    padding: 4rem 0;
+    animation: fadeInDown 1s ease-in-out;
+}
+
+.subscription-header h1 {
+    font-weight: 700;
+    letter-spacing: 1px;
+    animation: slideInLeft 1s ease-in-out;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subscription-header p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    animation: slideInRight 1s ease-in-out;
+}
+
+/* Pricing Plans */
+.pricing-plans {
+    padding: 3rem 0;
+    animation: fadeInUp 1s ease-in-out;
+    background-color: #f8faff; /* Very light blue background */
+}
+
+.pricing-plans .card {
+    border: 1px solid rgba(200, 212, 255, 0.5); /* Very light blue border */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative;
+    animation: fadeIn 1s ease-in-out;
+    background-color: white;
+}
+
+.pricing-plans .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 1rem 2rem rgba(200, 212, 255, 0.3); /* Very light blue shadow */
+}
+
+/* Glow Effect */
+.pricing-plans .card:hover::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 0px 20px rgba(200, 212, 255, 0.3); /* Very light blue glow */
+    z-index: -1;
+}
+
+/* Pricing Header */
+.pricing-plans .card-header {
+    padding: 1.5rem;
+    border-bottom: none;
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+    text-align: center;
+    font-weight: 600;
+    animation: fadeIn 1s ease-in-out;
+    background-color: #e6ecff; /* Very light blue */
+    color: #333; /* Changed text color for better contrast */
+}
+
+/* Price Tag */
+.pricing-plans .price {
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #c2d1ff; /* Very light blue */
+    animation: bounceIn 1s ease-in-out;
+}
+
+/* Subscription Buttons */
+.pricing-plans .btn-subscribe {
+    background: #d6e0ff; /* Very light blue */
+    color: #333; /* Changed text color for better contrast */
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out;
+    animation: pulse 2s infinite;
+    border: none;
+}
+
+.pricing-plans .btn-subscribe:hover {
+    background: #c2d1ff; /* Slightly darker very light blue */
+    transform: scale(1.05);
+}
+
+/* Features Comparison */
+.features-comparison {
+    padding: 3rem 0;
+    animation: fadeInUp 1s ease-in-out;
+    background-color: white;
+}
+
+.features-comparison thead th {
+    vertical-align: middle;
+    text-align: center;
+    font-weight: 600;
+    background-color: #e6ecff; /* Very light blue */
+    color: #333; /* Changed text color for better contrast */
+    padding: 1rem;
+}
+
+.features-comparison tbody tr:hover {
+    background-color: #f0f7ff; /* Very light blue */
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.features-comparison .fa-check {
+    color: #28a745; /* Keep green for checks */
+    font-size: 1.2rem;
+    animation: pop 1s ease-in-out;
+}
+
+.features-comparison .fa-times {
+    color: #dc3545; /* Keep red for X's */
+    font-size: 1.2rem;
+    animation: pop 1s ease-in-out;
+}
+
+/* FAQ Section */
+.faq-section {
+    padding: 3rem 0;
+    animation: fadeInUp 1s ease-in-out;
+    background-color: #f8faff; /* Very light blue background */
+}
+
+.faq-section .card {
+    margin-bottom: 1rem;
+    border: 1px solid rgba(200, 212, 255, 0.5); /* Very light blue border */
+    transition: all 0.3s ease-in-out;
+    animation: fadeInUp 1s ease-in-out;
+    background-color: white;
+}
+
+.faq-section .card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0.5rem 1rem rgba(200, 212, 255, 0.2); /* Very light blue shadow */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767.98px) {
+    .pricing-plans .card {
+        margin-bottom: 2rem;
+    }
+    
+    .features-comparison table {
+        font-size: 0.875rem;
+    }
+}
+
+/* Animations (unchanged) */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounceIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 10px rgba(200, 212, 255, 0.3); /* Very light blue pulse */
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(200, 212, 255, 0.5); /* Stronger very light blue pulse */
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(200, 212, 255, 0.3); /* Very light blue pulse */
+    }
+}

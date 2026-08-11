@@ -1,0 +1,225 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    padding-top: 70px; /* Account for fixed navbar */
+    background-color: #f8f9ff; /* Lighter background */
+    animation: fadeIn 1s ease-in-out;
+}
+
+a {
+    color: #4a6bff; /* Bright blue */
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #2a4bd9;
+    text-decoration: none;
+    transform: scale(1.1) rotate(3deg);
+}
+
+.btn {
+    font-weight: 500;
+    padding: 0.5rem 1.25rem;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary {
+    background-color: #4a6bff; /* Bright blue */
+    border-color: #4a6bff;
+}
+
+.btn-primary:hover {
+    background-color: #3a5bef;
+    border-color: #3a5bef;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(74, 107, 255, 0.3); /* Matching blue shadow */
+}
+
+.btn-outline-primary {
+    color: #4a6bff;
+    border-color: #4a6bff;
+}
+
+.btn-outline-primary:hover {
+    background-color: #4a6bff;
+    border-color: #4a6bff;
+    color: white;
+    transform: translateY(-3px) scale(1.05);
+}
+
+/* Card Styles */
+.card {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(74, 107, 255, 0.1);
+    transition: all 0.5s ease-in-out;
+    animation: fadeUp 0.8s ease-in-out;
+    background-color: white;
+}
+
+.card:hover {
+    box-shadow: 0 0.5rem 1rem rgba(74, 107, 255, 0.2);
+    transform: translateY(-10px) scale(1.03);
+}
+
+/* Navbar Styles */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.8s ease-in-out;
+    background-color: white;
+}
+
+.navbar-brand img {
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-brand:hover img {
+    opacity: 0.8;
+    transform: scale(1.1) rotate(-2deg);
+}
+
+/* Hero Section */
+.hero-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #6d8eff 0%, #4a6bff 100%); /* Bright blue gradient */
+    color: white;
+    text-align: center;
+    animation: fadeInScale 1.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Features Section */
+.features-section .card {
+    border: none;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.features-section .card:hover {
+    transform: translateY(-5px) scale(1.05) rotate(1deg);
+    box-shadow: 0 10px 20px rgba(74, 107, 255, 0.2);
+}
+
+.features-section i {
+    color: #4a6bff;
+    transition: transform 0.3s ease-in-out;
+}
+
+.features-section i:hover {
+    transform: rotate(20deg);
+}
+
+/* Footer */
+footer {
+    background-color: #4a6bff; /* Matching bright blue */
+    color: white;
+}
+
+footer a {
+    color: rgba(255, 255, 255, 0.85);
+    transition: all 0.3s ease-in-out;
+}
+
+footer a:hover {
+    color: white;
+    transform: scale(1.1);
+}
+
+.social-icons a {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.social-icons a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: rotate(360deg) scale(1.2);
+}
+
+/* Accent Colors */
+.badge-primary {
+    background-color: #4a6bff;
+}
+
+.text-primary {
+    color: #4a6bff !important;
+}
+
+.bg-primary {
+    background-color: #4a6bff !important;
+}
+
+/* Utility Classes */
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(74, 107, 255, 0.1);
+}
+
+.shadow {
+    box-shadow: 0 0.5rem 1rem rgba(74, 107, 255, 0.15);
+}
+
+/* Keyframe Animations (unchanged) */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Adjustments (unchanged) */
+@media (max-width: 767.98px) {
+    .hero-section {
+        text-align: center;
+    }
+    
+    .hero-section img {
+        margin-top: 2rem;
+    }
+}
+
+

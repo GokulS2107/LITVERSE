@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security - Litverse</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="static/css/main.css">
+    <style>
+        .security-card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            border: none;
+        }
+        
+        .security-card .card-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #eaeaea;
+            font-weight: 600;
+            padding: 1.25rem 1.5rem;
+            border-radius: 10px 10px 0 0 !important;
+        }
+        
+        .security-card .card-body {
+            padding: 1.5rem;
+        }
+        
+        .security-nav {
+            position: sticky;
+            top: 20px;
+        }
+        
+        .security-nav .nav-link {
+            color: #495057;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s;
+        }
+        
+        .security-nav .nav-link:hover {
+            background-color: #f1f3f5;
+            color: #4361ee;
+        }
+        
+        .security-nav .nav-link.active {
+            background-color: rgba(67, 97, 238, 0.1);
+            color: #4361ee;
+            font-weight: 500;
+        }
+        
+        .security-nav .nav-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .btn-security {
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+        }
+        
+        .security-activity-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .security-activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .security-badge {
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .password-strength {
+            height: 5px;
+            margin-top: 0.5rem;
+            border-radius: 3px;
+        }
+        
+        .password-strength-weak {
+            background-color: #dc3545;
+            width: 25%;
+        }
+        
+        .password-strength-medium {
+            background-color: #fd7e14;
+            width: 50%;
+        }
+        
+        .password-strength-strong {
+            background-color: #28a745;
+            width: 75%;
+        }
+        
+        .password-strength-very-strong {
+            background-color: #28a745;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/index">
+                <img 
+                    src="static/assets/images/2.jpg" 
+                    alt="Litverse" 
+                    style="
+                        height: 60px;
+                        width: 60px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                        border: 2px solid white;
+                        transition: all 0.3s ease;
+                    "
+                    onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 10px rgba(255, 255, 255, 0.5)'"
+                    onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'"
+                >
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/library">Library</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/subscription">Subscription</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/account">
+                            <i class="fas fa-user-circle"></i> My Account
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/security">
+                            <i class="fas fa-shield-alt"></i> Security
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light ms-lg-2" href="/login" id="logoutBtn">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Security Content -->
+    <section class="py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 mb-4">
+                    <div class="security-nav">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/s">
+                                    <i class="fas fa-user-cog"></i> Account Settings
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/ss">
+                                    <i class="fas fa-shield-alt"></i> Security
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/library">
+                                    <i class="fas fa-sliders-h"></i> Reading Preferences
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-9">
+                    <h1 class="mb-4">Security Settings</h1>
+                    
+                    <!-- Password Management -->
+                    <div class="card security-card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Password & Authentication</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="passwordForm">
+                                <div class="mb-3">
+                                    <label for="currentPassword" class="form-label">Current Password</label>
+                                    <input type="password" class="form-control" id="currentPassword" required>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="newPassword" class="form-label">New Password</label>
+                                    <input type="password" class="form-control" id="newPassword" required>
+                                    <div class="password-strength password-strength-weak" id="passwordStrength"></div>
+                                    <div class="form-text">
+                                        Password must contain at least:
+                                        <ul class="ps-3 mt-1">
+                                            <li>8 characters</li>
+                                            <li>1 uppercase letter</li>
+                                            <li>1 number</li>
+                                            <li>1 special character</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                                    <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary btn-security">Change Password</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Two-Factor Authentication -->
+                    <div class="card security-card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Two-Factor Authentication</h5>
+                            <span class="badge bg-success security-badge">Active</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="me-3">
+                                    <i class="fas fa-mobile-alt fa-2x text-primary"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1">Authenticator App</h6>
+                                    <p class="text-muted mb-0">Google Authenticator, Authy, etc.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>
+                                Two-factor authentication adds an extra layer of security to your account.
+                            </div>
+                            
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-outline-secondary">Change Authenticator</button>
+                                <button class="btn btn-outline-danger">Disable 2FA</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Security Activity -->
+                    <div class="card security-card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Recent Security Activity</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="security-activity-item">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h6 class="mb-1">Login from new device</h6>
+                                        <p class="text-muted mb-0">Chrome on Windows • San Francisco, CA</p>
+                                    </div>
+                                    <div class="text-end">
+                                        <p class="mb-1 text-muted">Today, 10:30 AM</p>
+                                        <span class="badge bg-warning text-dark security-badge">New</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="security-activity-item">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h6 class="mb-1">Password changed</h6>
+                                        <p class="text-muted mb-0">Safari on iPhone • San Francisco, CA</p>
+                                    </div>
+                                    <div class="text-end">
+                                        <p class="mb-1 text-muted">Yesterday, 8:45 PM</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="security-activity-item">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h6 class="mb-1">Login from new location</h6>
+                                        <p class="text-muted mb-0">Firefox on Mac • New York, NY</p>
+                                    </div>
+                                    <div class="text-end">
+                                        <p class="mb-1 text-muted">June 20, 2023, 3:15 PM</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center mt-3">
+                                <a href="#" class="text-primary">View all activity</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Account Recovery -->
+                    <div class="card security-card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Account Recovery</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <h6 class="mb-3">Recovery Email</h6>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div>
+                                        <p class="mb-0">johndoe.backup@example.com</p>
+                                        <small class="text-muted">Added June 15, 2023</small>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-primary">Change</button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h6 class="mb-3">Recovery Options</h6>
+                                <div class="form-check form-switch mb-2">
+                                    <input class="form-check-input" type="checkbox" id="recoveryEmail" checked>
+                                    <label class="form-check-label" for="recoveryEmail">Email Recovery</label>
+                                </div>
+                                <div class="form-check form-switch mb-2">
+                                    <input class="form-check-input" type="checkbox" id="securityQuestions">
+                                    <label class="form-check-label" for="securityQuestions">Security Questions</label>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="backupCodes">
+                                    <label class="form-check-label" for="backupCodes">Backup Codes</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2025 Litverse. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white me-3">Privacy Policy</a>
+                    <a href="#" class="text-white me-3">Terms of Service</a>
+                    <a href="#" class="text-white">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="static/js/security.js"></script>
+</body>
+</html>

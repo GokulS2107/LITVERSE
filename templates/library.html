@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library - Litverse</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Custom styles */
+        .navbar-logo {
+            height: 60px;
+            width: 60px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid white;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-logo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        .library-header {
+            background-color: #f8f9fa;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            text-align: center;
+            animation: fadeInDown 0.8s ease-in-out;
+        }
+        
+        .library-content {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        
+        /* Book Grid */
+        .book-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .star-rating {
+            color: #ffc107;
+        }
+        
+        /* List View */
+        .list-view .book-card {
+            flex-direction: row !important;
+        }
+        
+        .list-view .book-card img {
+            width: 120px !important;
+            height: auto !important;
+            margin-right: 20px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/index">
+                <img 
+                src="static/assets/images/2.jpg" 
+                alt="Litverse" 
+                style="
+                    height: 60px;
+                    width: 60px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                    border: 2px solid white;
+                    transition: all 0.3s ease;
+                "
+                onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 10px rgba(255, 255, 255, 0.5)'"
+                onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'"
+            >
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/library">Library</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/subscription">Subscription</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/account">
+                            <i class="fas fa-user-circle"></i> My Account
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light ms-lg-2" href="/login" id="logoutBtn">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Library Header -->
+    <header class="library-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8"><br><br>
+                    <h1 class="display-4 mb-3" style="font-family: 'Times New Roman', Times, serif">Your Digital Library</h1>
+<p class="lead mb-4" style="font-family: 'Times New Roman', Times, serif">Browse our collection of thousands of eBooks across all genres.</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search books..." id="searchInput">
+                        <button class="btn btn-primary" type="button" id="searchBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Library Content -->
+    <section class="library-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <!-- Filters -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-white">
+                            <h5 class="mb-0">Filters</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="genreFilter" class="form-label">Genre</label>
+                                <select class="form-select" id="genreFilter">
+                                    <option value="">All Genres</option>
+                                    <option value="fiction">Fiction</option>
+                                    <option value="non-fiction">Non-Fiction</option>
+                                    <option value="science-fiction">Science Fiction</option>
+                                    <option value="fantasy">Fantasy</option>
+                                    <option value="mystery">Mystery</option>
+                                    <option value="romance">Romance</option>
+                                    <option value="biography">Biography</option>
+                                    <option value="history">History</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="sortBy" class="form-label">Sort By</label>
+                                <select class="form-select" id="sortBy">
+                                    <option value="popularity">Popularity</option>
+                                    <option value="newest">Newest</option>
+                                    <option value="title">Title (A-Z)</option>
+                                    <option value="author">Author (A-Z)</option>
+                                    <option value="rating">Rating</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary w-100" id="applyFilters">Apply Filters</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Categories -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-white">
+                            <h5 class="mb-0">Categories</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="#" class="text-decoration-none category-link" data-category="all">All Books</a>
+                                    <span class="badge bg-primary rounded-pill">1,245</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="#" class="text-decoration-none category-link" data-category="fiction">Fiction</a>
+                                    <span class="badge bg-primary rounded-pill">432</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="#" class="text-decoration-none category-link" data-category="non-fiction">Non-Fiction</a>
+                                    <span class="badge bg-primary rounded-pill">387</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="#" class="text-decoration-none category-link" data-category="science-fiction">Science Fiction</a>
+                                    <span class="badge bg-primary rounded-pill">156</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="#" class="text-decoration-none category-link" data-category="fantasy">Fantasy</a>
+                                    <span class="badge bg-primary rounded-pill">143</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="#" class="text-decoration-none category-link" data-category="mystery">Mystery</a>
+                                    <span class="badge bg-primary rounded-pill">98</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="#" class="text-decoration-none category-link" data-category="romance">Romance</a>
+                                    <span class="badge bg-primary rounded-pill">87</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-9">
+                    <!-- Book Grid -->
+                    <div class="row mb-4">
+                        <div class="col-12 d-flex justify-content-between align-items-center">
+                            <h4 class="mb-0">Featured Books</h4>
+                            <div class="view-options">
+                                <button class="btn btn-sm btn-outline-secondary active" id="gridViewBtn">
+                                    <i class="fas fa-th"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary" id="listViewBtn">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row" id="bookGrid">
+                        <!-- Book cards will be populated by JavaScript -->
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <nav aria-label="Page navigation" class="mt-4">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="/library">1</a></li>
+                            <li class="page-item"><a class="page-link" href="/page2">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2025 Litverse. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white me-3">Privacy Policy</a>
+                    <a href="#" class="text-white me-3">Terms of Service</a>
+                    <a href="#" class="text-white">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Library JS -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sample book data with Google Drive PDF links
+        const books = [
+            {
+                id: 1,
+                title: "The Great Novel",
+                author: "John Author",
+                cover: "static/assets/images/6.png",
+                rating: 4.5,
+                genre: "Fiction",
+                description: "A captivating story about life, love, and everything in between.",
+                pages: 320,
+                published: "2022",
+                // Replace with your Google Drive PDF link
+                driveLink: "https://drive.google.com/file/d/1n4jJ22WOzgGGm6L4tHyH9zQL_l46TB0Z/view?usp=drive_link/preview"
+            },
+            {
+                id: 2,
+                title: "Little Women",
+                author: " Louisa May Alcott",
+                cover: "static/assets/images/7.WEBP",
+                rating: 4.2,
+                genre: "Non-Fiction",
+                description: "Exploring the latest scientific discoveries and their impact on our world.",
+                pages: 280,
+                published: "2023",
+                driveLink: "https://drive.google.com/file/d/1Lw-RXPmnE-uwPt-RDgmC4lOEox1fTwR4/view?usp=drive_link/preview"
+            },
+            {
+                id: 3,
+                title: "The Time Machine",
+                author: "H. G. Wells",
+                cover: "static/assets/images/8.WEBP",
+                rating: 4.7,
+                genre: "Mystery",
+                description: "A collection of thrilling mystery stories that will keep you guessing.",
+                pages: 350,
+                published: "2021",
+                driveLink: "https://drive.google.com/file/d/19FhcbzgOhKzMAgSl-ywKfdFhpek_SgST/view?usp=drive_link/preview"
+            },
+            {
+                id: 4,
+                title: "The Adventures of Tom Sawyer",
+                author: "Mark Twain",
+                cover: "static/assets/images/9.WEBP",
+                rating: 4.8,
+                genre: "Fantasy",
+                description: "Journey to a magical world filled with wonder and adventure.",
+                pages: 420,
+                published: "2023",
+                driveLink: "https://drive.google.com/file/d/137b7niaf0nf7d1nMHtvkEoAAWg_XglUZ/view?usp=drive_link/preview"
+            },
+            {
+                id: 5,
+                title: "The Iron Heel",
+                author: "Jack London",
+                cover: "static/assets/images/10.WEBP",
+                rating: 4.3,
+                genre: "History",
+                description: "Fascinating insights into historical events that shaped our world.",
+                pages: 380,
+                published: "2022",
+                driveLink: "https://drive.google.com/file/d/1uyN9X6oNpsRDQEepxbajnYM2kvx8_cdk/view?usp=drive_link/preview"
+            },
+            {
+                id: 6,
+                title: "Brave New World",
+                author: "Aldous Huxley",
+                cover: "static/assets/images/11.WEBP",
+                rating: 4.1,
+                genre: "Business",
+                description: "Proven strategies for business growth and success.",
+                pages: 290,
+                published: "2023",
+                driveLink: "https://drive.google.com/file/d/1A8gHSZ5pKtn2gx-wNxDQbje03tnfe7ZG/view?usp=drive_link/preview"
+            }
+        ];
+
+        let currentView = 'grid'; // 'grid' or 'list'
+        
+        // Render books
+        function renderBooks(booksToRender) {
+            const bookGrid = document.getElementById('bookGrid');
+            bookGrid.innerHTML = '';
+            bookGrid.className = currentView === 'grid' ? 'row' : 'row list-view';
+            
+            booksToRender.forEach(book => {
+                const bookCard = document.createElement('div');
+                bookCard.className = currentView === 'grid' ? 'col-md-4 col-sm-6 mb-4' : 'col-12 mb-4';
+                
+                bookCard.innerHTML = `
+                    <div class="card h-100 book-card">
+                        <div class="${currentView === 'list' ? 'row g-0' : ''}">
+                            ${currentView === 'list' ? `
+                            <div class="col-md-2">
+                                <img src="${book.cover}" class="img-fluid rounded-start" alt="${book.title}">
+                            </div>
+                            <div class="col-md-10">
+                            ` : `
+                            <img src="${book.cover}" class="card-img-top" alt="${book.title}">
+                            <div class="card-body">
+                            `}
+                                <h5 class="card-title">${book.title}</h5>
+                                <p class="card-text text-muted">${book.author}</p>
+                                <div class="mb-2">
+                                    ${renderStars(book.rating)}
+                                    <span class="ms-2">${book.rating}</span>
+                                </div>
+                                <span class="badge bg-primary">${book.genre}</span>
+                                <p class="card-text mt-2">${book.description}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">${book.pages} pages</small>
+                                    <a href="${book.driveLink}" class="btn btn-primary" target="_blank">
+                                        Read Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                bookGrid.appendChild(bookCard);
+            });
+        }
+        
+        // Function to render star ratings
+        function renderStars(rating) {
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star text-warning"></i>';
+            }
+            
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt text-warning"></i>';
+            }
+            
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star text-warning"></i>';
+            }
+            
+            return stars;
+        }
+        
+        // View toggle
+        document.getElementById('gridViewBtn').addEventListener('click', function() {
+            currentView = 'grid';
+            renderBooks(books);
+            this.classList.add('active');
+            document.getElementById('listViewBtn').classList.remove('active');
+        });
+        
+        document.getElementById('listViewBtn').addEventListener('click', function() {
+            currentView = 'list';
+            renderBooks(books);
+            this.classList.add('active');
+            document.getElementById('gridViewBtn').classList.remove('active');
+        });
+        
+        // Search functionality
+        document.getElementById('searchBtn').addEventListener('click', function() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filteredBooks = books.filter(book => 
+                book.title.toLowerCase().includes(searchTerm) || 
+                book.author.toLowerCase().includes(searchTerm) ||
+                book.genre.toLowerCase().includes(searchTerm)
+            );
+            renderBooks(filteredBooks);
+        });
+        
+        // Filter by genre
+        document.getElementById('applyFilters').addEventListener('click', function() {
+            const genreFilter = document.getElementById('genreFilter').value;
+            const sortBy = document.getElementById('sortBy').value;
+            
+            let filteredBooks = [...books];
+            
+            if (genreFilter) {
+                filteredBooks = filteredBooks.filter(book => book.genre.toLowerCase() === genreFilter.toLowerCase());
+            }
+            
+            // Sort books
+            switch(sortBy) {
+                case 'popularity':
+                    filteredBooks.sort((a, b) => b.rating - a.rating);
+                    break;
+                case 'newest':
+                    filteredBooks.sort((a, b) => b.published - a.published);
+                    break;
+                case 'title':
+                    filteredBooks.sort((a, b) => a.title.localeCompare(b.title));
+                    break;
+                case 'author':
+                    filteredBooks.sort((a, b) => a.author.localeCompare(b.author));
+                    break;
+                case 'rating':
+                    filteredBooks.sort((a, b) => b.rating - a.rating);
+                    break;
+            }
+            
+            renderBooks(filteredBooks);
+        });
+        
+        // Category links
+        document.querySelectorAll('.category-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const category = this.getAttribute('data-category');
+                
+                if (category === 'all') {
+                    renderBooks(books);
+                } else {
+                    const filteredBooks = books.filter(book => book.genre.toLowerCase() === category.toLowerCase());
+                    renderBooks(filteredBooks);
+                }
+            });
+        });
+
+        // Initial render
+        renderBooks(books);
+    });
+    </script>
+</body>
+</html>

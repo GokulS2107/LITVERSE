@@ -1,4 +1,4 @@
-# Flask Authentication System
+# LITVERSE
 
 A simple Flask web application with user authentication, session management, and a responsive UI. This project demonstrates a basic authentication system with login, registration, and dashboard functionality.
 
